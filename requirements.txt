@@ -16,3 +16,4 @@ static3==0.7.0
 urllib3==1.25.11
 gunicorn==19.8.1
 psycopg2-binary==2.8.6
+django-extensions==3.1.0
