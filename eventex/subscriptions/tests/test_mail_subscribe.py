@@ -30,7 +30,7 @@ class SubscribePostValid(TestCase):
     def test_subscription_email_body(self):
         """Valid send subscription email body"""
         contents = [
-            'Talvane Augusto de Magalhães',
+            'Talvane Augusto De Magalhães',
             '12345678901',
             'talvane.magalhaes@gmail.com',
             '81-99999-9999',
