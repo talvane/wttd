@@ -15,8 +15,14 @@ def new(request):
 
     return empty_form(request)
 
+
 def empty_form(request):
-    return render(request, 'subscriptions/subscription_form.html', {'form': SubscriptionForm()})
+    return render(
+        request,
+        'subscriptions/subscription_form.html',
+        {'form': SubscriptionForm()}
+    )
+
 
 def create(request):
     form = SubscriptionForm(request.POST)
@@ -24,7 +30,7 @@ def create(request):
         return render(request, 'subscriptions/subscription_form.html',
                       {'form': form})
 
-    subscription = Subscription.objects.create(**form.cleaned_data)
+    subscription = form.save()
 
     _send_mail('Confirmação de inscrição',
                settings.DEFAULT_FROM_EMAIL,
@@ -34,13 +40,19 @@ def create(request):
 
     return HttpResponseRedirect(r('subscriptions:detail', subscription.pk))
 
+
 def detail(request, pk):
     try:
         subscription = Subscription.objects.get(pk=pk)
     except Subscription.DoesNotExist:
         raise Http404
 
-    return render(request, 'subscriptions/subscription_detail.html', {'subscription': subscription})
+    return render(
+        request,
+        'subscriptions/subscription_detail.html',
+        {'subscription': subscription}
+    )
+
 
 def _send_mail(subject, from_, to, template_name, context):
     body = render_to_string(template_name, context)
