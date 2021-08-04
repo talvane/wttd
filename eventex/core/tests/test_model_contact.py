@@ -12,7 +12,7 @@ class ContactModelTest(TestCase):
         )
 
     def test_email(self):
-        contact = Contact.objects.create(
+        Contact.objects.create(
             speaker=self.speaker,
             kind=Contact.EMAIL,
             value='talvane.magalhaes@gmail.com'
@@ -21,7 +21,7 @@ class ContactModelTest(TestCase):
         self.assertTrue(Contact.objects.exists())
 
     def test_phone(self):
-        contact = Contact.objects.create(
+        Contact.objects.create(
             speaker=self.speaker,
             kind=Contact.PHONE,
             value='81999428928'
